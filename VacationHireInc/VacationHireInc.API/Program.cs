@@ -36,6 +36,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Vacation Hire Inc. API", Version = "v1" });
 });
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -55,6 +56,7 @@ app.MapControllerRoute(
 
 // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
 // specifying the Swagger JSON endpoint.
+app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("swagger/v1/swagger.json", "Vacation Hire Inc. API V1");
