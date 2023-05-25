@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VacationHireInc.API.Controllers;
 
-[Route("api/home")]
-public class HomeController : Controller
+[Route("api/orders")]
+[ApiController]
+public class HomeController : ControllerBase
 {
     private readonly ILogger<HomeController> _logger;
 

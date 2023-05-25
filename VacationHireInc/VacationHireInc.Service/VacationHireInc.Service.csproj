@@ -15,6 +15,16 @@
     <PackageReference Include="AutoMapper" Version="12.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Orders\" />
+    <None Remove="Orders\Interfaces\" />
+    <None Remove="Orders\Validators\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Orders\" />
+    <Folder Include="Orders\Interfaces\" />
+    <Folder Include="Orders\Validators\" />
   </ItemGroup>
 </Project>

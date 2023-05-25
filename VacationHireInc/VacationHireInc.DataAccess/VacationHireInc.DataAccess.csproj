@@ -20,4 +20,14 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="GenericRepository\" />
+    <None Remove="Repositories\" />
+    <None Remove="Repositories\Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GenericRepository\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Repositories\Interfaces\" />
+  </ItemGroup>
 </Project>

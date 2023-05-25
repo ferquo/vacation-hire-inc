@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using VacationHireInc.API;
 using VacationHireInc.API.Middlewares;
 using VacationHireInc.DataAccess;
 
@@ -12,6 +14,20 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<VacationHireIncContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Add dependencies from the bussiness logic layer
+builder.Services.AddVacationHireIncServiceDependencies();
+
+// Add dependencies from the data access layer
+builder.Services.AddVacationHireIncDataAccessDependencies();
+
+// Auto Mapper Configurations
+var mappingConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new MappingProfile());
+});
+IMapper mapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
