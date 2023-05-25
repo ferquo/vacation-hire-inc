@@ -6,6 +6,8 @@ namespace VacationHireInc.DataAccess.Repositories.Interfaces
 {
 	public interface IOrdersRepository : IGenericRepository<Order>
 	{
-	}
+        Task<IEnumerable<Order>> GetOrdersFiltered(int skip, int take);
+        Task<int> GetTotalMatchingFilter();
+    }
 }
 

@@ -21,6 +21,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             // Register Strategies
             services.AddScoped<IGetOrderStrategy, GetOrderStrategy>();
+            services.AddScoped<IGetOrdersStrategy, GetOrdersStrategy>();
             services.AddScoped<ICreateOrderStrategy, CreateOrderStrategy>();
 
             // Register Validators
