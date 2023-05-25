@@ -1,11 +1,17 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using VacationHireInc.API.Middlewares;
+using VacationHireInc.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<VacationHireIncContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
