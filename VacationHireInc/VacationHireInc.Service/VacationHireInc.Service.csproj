@@ -18,6 +18,8 @@
     <None Remove="Orders\" />
     <None Remove="Orders\Interfaces\" />
     <None Remove="Orders\Validators\" />
+    <None Remove="RentableProducts\" />
+    <None Remove="RentableProducts\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
@@ -26,5 +28,7 @@
     <Folder Include="Orders\" />
     <Folder Include="Orders\Interfaces\" />
     <Folder Include="Orders\Validators\" />
+    <Folder Include="RentableProducts\" />
+    <Folder Include="RentableProducts\Interfaces\" />
   </ItemGroup>
 </Project>

@@ -5,6 +5,8 @@ namespace VacationHireInc.DataAccess.GenericRepository
     {
         IEnumerable<TEntity> GetAll();
 
+        Task<IEnumerable<TEntity>> GetAllAsync();
+
         Task<TEntity> GetById(int id);
 
         Task<TEntity> GetById(Guid id);

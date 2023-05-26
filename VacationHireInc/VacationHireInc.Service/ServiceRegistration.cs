@@ -5,6 +5,8 @@ using VacationHireInc.Domain.DataTransferObjects;
 using VacationHireInc.Service.Orders;
 using VacationHireInc.Service.Orders.Interfaces;
 using VacationHireInc.Service.Orders.Validators;
+using VacationHireInc.Service.RentableProducts;
+using VacationHireInc.Service.RentableProducts.Interfaces;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -24,6 +26,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IGetOrdersStrategy, GetOrdersStrategy>();
             services.AddScoped<ICreateOrderStrategy, CreateOrderStrategy>();
             services.AddScoped<IDeleteOrderStrategy, DeleteOrderStrategy>();
+
+            services.AddScoped<IGetRentableProductsStrategy, GetRentableProductsStrategy>();
 
             // Register Validators
             services.AddTransient<IValidator<OrderForCreationDto>, OrderCreationValidator>();

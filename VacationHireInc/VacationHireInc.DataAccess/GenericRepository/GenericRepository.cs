@@ -32,6 +32,11 @@ namespace VacationHireInc.DataAccess.GenericRepository
             return db.Set<TEntity>().AsNoTracking().ToList();
         }
 
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            return await db.Set<TEntity>().AsNoTracking().ToListAsync();
+        }
+
         public async Task<TEntity> GetById(int id)
         {
             return await db.Set<TEntity>()
