@@ -17,10 +17,18 @@ namespace VacationHireInc.DataAccess.Repositories
             return await db.Orders.AsNoTracking().AnyAsync(x => x.Id == id);
         }
 
+        public async Task<Order> GetOrderById(Guid id)
+        {
+            return await db.Orders
+                .Include(order => order.RentedProduct)
+                .SingleOrDefaultAsync(order => order.Id == id);
+        }
+
         public async Task<IEnumerable<Order>> GetOrdersFiltered(int skip, int take)
         {
             return await db.Orders
                 .AsNoTracking()
+                .Include(order => order.RentedProduct)
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();

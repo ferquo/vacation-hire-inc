@@ -11,6 +11,9 @@ namespace VacationHireInc.API
 		{
             CreateMap<Order, OrderDto>();
             CreateMap<OrderForCreationDto, Order>();
+
+            CreateMap<RentableProduct, IRentableProductDto>().As<RentableProductDto>();
+            CreateMap<RentableProduct, RentableProductDto>();
         }
 	}
 }

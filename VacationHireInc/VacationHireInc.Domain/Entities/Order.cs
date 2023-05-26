@@ -20,6 +20,9 @@ namespace VacationHireInc.Domain.Entities
         public decimal PaidAmount { get; set; }
 
         public string PaidInCurrency { get; set; }
+
+        public Guid RentedProductId { get; set; }
+        public RentableProduct RentedProduct { get; set; }
     }
 }
 

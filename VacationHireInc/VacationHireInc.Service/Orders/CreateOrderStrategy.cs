@@ -32,7 +32,8 @@ namespace VacationHireInc.Service.Orders
 
             var orderEntity = mapper.Map<Order>(order);
             await ordersRepository.Create(orderEntity);
-            return mapper.Map<OrderDto>(orderEntity);
+            var createdEntity = await ordersRepository.GetOrderById(orderEntity.Id);
+            return mapper.Map<OrderDto>(createdEntity);
         }
     }
 }

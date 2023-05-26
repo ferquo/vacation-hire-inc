@@ -16,7 +16,11 @@ namespace VacationHireInc.Service.Orders.Validators
             RuleFor(order => order.PaidAmount)
                 .GreaterThan(0).WithMessage("The amount paid must be a positive number");
 
-            // This can be improved by looking up the currency from the currencylayer API
+            // Can be improved by checking the db for it's existence
+            RuleFor(order => order.RentedProductId)
+                .NotEmpty().WithMessage("Rented product not specified");
+
+            // Can be improved by looking up the currency from the currencylayer API
             RuleFor(order => order.PaidInCurrency)
                 .NotEmpty().WithMessage("Currency not specified");
 

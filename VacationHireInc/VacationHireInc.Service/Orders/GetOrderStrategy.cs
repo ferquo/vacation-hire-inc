@@ -23,7 +23,7 @@ namespace VacationHireInc.Service.Orders
 
         public async Task<OrderDto> GetOrder(Guid id)
         {
-            var folder = await ordersRepository.GetById(id);
+            var folder = await ordersRepository.GetOrderById(id);
             if (folder is null)
             {
                 throw new NotFoundException("Order", id);

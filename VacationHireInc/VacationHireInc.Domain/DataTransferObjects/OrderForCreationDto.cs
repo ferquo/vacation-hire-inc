@@ -13,6 +13,8 @@ namespace VacationHireInc.Domain.DataTransferObjects
 
         public string PaidInCurrency { get; set; }
 
+        public Guid RentedProductId { get; set; }
+
     }
 }
 

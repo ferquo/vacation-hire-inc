@@ -15,6 +15,14 @@ namespace VacationHireInc.Domain.DataTransferObjects
         public decimal PaidAmount { get; set; }
 
         public string PaidInCurrency { get; set; }
+
+        /// <summary>
+        /// This field represents the rented vehicle
+        /// Obeys the open/closed princible
+        /// When the Vacation Hire Inc wants to extend its product lineup,
+        /// the order model doesn't need to be modified
+        /// </summary>
+        public IRentableProductDto RentedProduct { get; set; }
     }
 }
 
