@@ -4,5 +4,6 @@
     {
         Guid Id { get; set; }
         string Name { get; set; }
+        string ProductType { get; set; }
     }
 }

@@ -12,6 +12,8 @@ namespace VacationHireInc.Domain.Entities
 
         public string Name { get; set; }
 
+        public string ProductType { get; set; }
+
         public ICollection<Order> Orders { get; } = new List<Order>();
     }
 }

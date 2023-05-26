@@ -6,6 +6,8 @@ namespace VacationHireInc.Domain.DataTransferObjects
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
+        public string ProductType { get; set; }
     }
 }
 
