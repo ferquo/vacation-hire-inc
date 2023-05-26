@@ -23,6 +23,9 @@ namespace VacationHireInc.Domain.Entities
 
         public Guid RentedProductId { get; set; }
         public RentableProduct RentedProduct { get; set; }
+
+        public Guid? ProductReturnalInfoId { get; set; }
+        public ProductReturnalInfo? ProductReturnalInfo { get; set; }
     }
 }
 
