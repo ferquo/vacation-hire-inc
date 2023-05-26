@@ -13,7 +13,7 @@ namespace VacationHireInc.DataAccess.GenericRepository
 
         Task Update(int id, TEntity entity);
 
-        Task Delete(int id);
+        Task Delete(Guid id);
     }
 }
 

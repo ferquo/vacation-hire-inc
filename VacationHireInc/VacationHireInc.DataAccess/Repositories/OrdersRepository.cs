@@ -12,9 +12,15 @@ namespace VacationHireInc.DataAccess.Repositories
         {
         }
 
+        public async Task<bool> Exists(Guid id)
+        {
+            return await db.Orders.AsNoTracking().AnyAsync(x => x.Id == id);
+        }
+
         public async Task<IEnumerable<Order>> GetOrdersFiltered(int skip, int take)
         {
             return await db.Orders
+                .AsNoTracking()
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
@@ -24,6 +30,7 @@ namespace VacationHireInc.DataAccess.Repositories
         {
             // since there are no orderings/filterings implemented, just get the total count
             return await db.Orders
+                .AsNoTracking()
                 .CountAsync();
         }
     }

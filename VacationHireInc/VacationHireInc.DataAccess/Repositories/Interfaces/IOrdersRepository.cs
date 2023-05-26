@@ -8,6 +8,7 @@ namespace VacationHireInc.DataAccess.Repositories.Interfaces
 	{
         Task<IEnumerable<Order>> GetOrdersFiltered(int skip, int take);
         Task<int> GetTotalMatchingFilter();
+        Task<bool> Exists(Guid id);
     }
 }
 

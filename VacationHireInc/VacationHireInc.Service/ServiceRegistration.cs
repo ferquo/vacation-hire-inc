@@ -23,6 +23,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IGetOrderStrategy, GetOrderStrategy>();
             services.AddScoped<IGetOrdersStrategy, GetOrdersStrategy>();
             services.AddScoped<ICreateOrderStrategy, CreateOrderStrategy>();
+            services.AddScoped<IDeleteOrderStrategy, DeleteOrderStrategy>();
 
             // Register Validators
             services.AddTransient<IValidator<OrderForCreationDto>, OrderCreationValidator>();

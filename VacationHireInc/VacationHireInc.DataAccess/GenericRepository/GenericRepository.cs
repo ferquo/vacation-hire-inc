@@ -20,7 +20,7 @@ namespace VacationHireInc.DataAccess.GenericRepository
             await db.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(Guid id)
         {
             var entity = await GetById(id);
             db.Set<TEntity>().Remove(entity);

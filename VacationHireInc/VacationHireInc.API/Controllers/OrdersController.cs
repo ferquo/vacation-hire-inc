@@ -14,17 +14,20 @@ namespace VacationHireInc.API.Controllers
         private readonly ICreateOrderStrategy createOrderStrategy;
         private readonly IGetOrderStrategy getOrderStrategy;
         private readonly IGetOrdersStrategy getOrdersStrategy;
+        private readonly IDeleteOrderStrategy deleteOrderStrategy;
 
         public OrdersController(
             ILogger<OrdersController> logger,
             ICreateOrderStrategy createOrderStrategy,
             IGetOrderStrategy getOrderStrategy,
-            IGetOrdersStrategy getOrdersStrategy)
+            IGetOrdersStrategy getOrdersStrategy,
+            IDeleteOrderStrategy deleteOrderStrategy)
 		{
             this.logger = logger;
             this.createOrderStrategy = createOrderStrategy;
             this.getOrderStrategy = getOrderStrategy;
             this.getOrdersStrategy = getOrdersStrategy;
+            this.deleteOrderStrategy = deleteOrderStrategy;
         }
 
         [HttpGet("", Name = "GetOrders")]
@@ -53,11 +56,10 @@ namespace VacationHireInc.API.Controllers
         }
 
         [HttpDelete("{id}", Name = "DeleteOrder")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            throw new NotImplementedException();
-            // await deleteOrderStrategy.Delete(id);
-            // return NoContent();
+            await deleteOrderStrategy.Delete(id);
+            return NoContent();
         }
     }
 }
