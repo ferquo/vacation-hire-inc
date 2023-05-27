@@ -38,6 +38,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IGetVechicleReturnalInfoStrategy, GetVechicleReturnalInfoStrategy>();
 
             services.AddScoped<IGetAllCurrenciesStrategy, GetAllCurrenciesStrategy>();
+            services.AddScoped<IGeCurrencyExchangeRateToUSDStrategy, GeCurrencyExchangeRateToUSDStrategy>();
 
             // Register Validators
             services.AddTransient<IValidator<OrderForCreationDto>, OrderCreationValidator>();

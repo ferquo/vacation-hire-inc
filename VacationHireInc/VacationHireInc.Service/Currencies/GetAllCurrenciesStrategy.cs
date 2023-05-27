@@ -8,7 +8,7 @@ using VacationHireInc.Service.Currencies.Interfaces;
 
 namespace VacationHireInc.Service.Currencies
 {
-	public class GetAllCurrenciesStrategy : IGetAllCurrenciesStrategy
+    public class GetAllCurrenciesStrategy : IGetAllCurrenciesStrategy
     {
         private readonly IConfiguration configuration;
 

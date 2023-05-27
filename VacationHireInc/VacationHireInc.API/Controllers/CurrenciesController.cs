@@ -11,11 +11,14 @@ namespace VacationHireInc.API.Controllers
     public class CurrenciesController : ControllerBase
 	{
         private readonly IGetAllCurrenciesStrategy getAllCurrenciesStrategy;
+        private readonly IGeCurrencyExchangeRateToUSDStrategy geCurrencyExchangeRateToUSDStrategy;
 
         public CurrenciesController(
-            IGetAllCurrenciesStrategy getAllCurrenciesStrategy)
+            IGetAllCurrenciesStrategy getAllCurrenciesStrategy,
+            IGeCurrencyExchangeRateToUSDStrategy geCurrencyExchangeRateToUSDStrategy)
 		{
             this.getAllCurrenciesStrategy = getAllCurrenciesStrategy;
+            this.geCurrencyExchangeRateToUSDStrategy = geCurrencyExchangeRateToUSDStrategy;
         }
 
         [HttpGet("", Name = "GetCurrencies")]
@@ -23,6 +26,13 @@ namespace VacationHireInc.API.Controllers
         {
             var currencies = await getAllCurrenciesStrategy.GetCurrencies();
             return Ok(currencies);
+        }
+
+        [HttpGet("{currency}", Name = "GetExchangeRateToUSD")]
+        public async Task<IActionResult> Get(string currency)
+        {
+            var exchangeRate = await geCurrencyExchangeRateToUSDStrategy.GetExchangeRate(currency);
+            return Ok(exchangeRate);
         }
     }
 }

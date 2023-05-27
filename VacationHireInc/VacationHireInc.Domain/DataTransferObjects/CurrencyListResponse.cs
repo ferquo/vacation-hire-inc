@@ -1,7 +1,7 @@
 ﻿using System;
 namespace VacationHireInc.Domain.DataTransferObjects
 {
-	public class CurrencyListResponse
+    public class CurrencyListResponse
 	{
         public bool Success { get; set; }
         public string Terms { get; set; }
