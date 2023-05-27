@@ -21,6 +21,7 @@ namespace Microsoft.Extensions.DependencyInjection
             // Register repositories
             services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddScoped<IRentableProductRepository, RentableProductRepository>();
+            services.AddScoped<IVechicleReturnalInfoRepository, VechicleReturnalInfoRepository>();
 
             return services;
         }

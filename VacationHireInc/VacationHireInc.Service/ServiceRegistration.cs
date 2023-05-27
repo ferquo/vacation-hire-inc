@@ -7,6 +7,9 @@ using VacationHireInc.Service.Orders.Interfaces;
 using VacationHireInc.Service.Orders.Validators;
 using VacationHireInc.Service.RentableProducts;
 using VacationHireInc.Service.RentableProducts.Interfaces;
+using VacationHireInc.Service.VechicleReturnalInfos;
+using VacationHireInc.Service.VechicleReturnalInfos.Interfaces;
+using VacationHireInc.Service.VechicleReturnalInfos.Validators;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -29,8 +32,11 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddScoped<IGetRentableProductsStrategy, GetRentableProductsStrategy>();
 
+            services.AddScoped<ICreateVechicleReturnalInfoStrategy, CreateVechicleReturnalInfoStrategy>();
+
             // Register Validators
             services.AddTransient<IValidator<OrderForCreationDto>, OrderCreationValidator>();
+            services.AddTransient<IValidator<VechicleReturnalInfoCreationDto>, VechicleReturnalInfoCreationValidator>();
 
             return services;
         }

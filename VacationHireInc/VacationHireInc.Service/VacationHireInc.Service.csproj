@@ -20,6 +20,9 @@
     <None Remove="Orders\Validators\" />
     <None Remove="RentableProducts\" />
     <None Remove="RentableProducts\Interfaces\" />
+    <None Remove="VechicleReturnalInfos\" />
+    <None Remove="VechicleReturnalInfos\Interfaces\" />
+    <None Remove="VechicleReturnalInfos\Validators\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
@@ -30,5 +33,8 @@
     <Folder Include="Orders\Validators\" />
     <Folder Include="RentableProducts\" />
     <Folder Include="RentableProducts\Interfaces\" />
+    <Folder Include="VechicleReturnalInfos\" />
+    <Folder Include="VechicleReturnalInfos\Interfaces\" />
+    <Folder Include="VechicleReturnalInfos\Validators\" />
   </ItemGroup>
 </Project>
