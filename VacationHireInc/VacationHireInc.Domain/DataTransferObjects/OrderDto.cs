@@ -23,6 +23,8 @@ namespace VacationHireInc.Domain.DataTransferObjects
         /// the order model doesn't need to be modified
         /// </summary>
         public IRentableProductDto RentedProduct { get; set; }
+
+        public ProductReturnalInfoDto? ProductReturnalInfo { get; set; }
     }
 }
 

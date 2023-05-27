@@ -33,6 +33,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IGetRentableProductsStrategy, GetRentableProductsStrategy>();
 
             services.AddScoped<ICreateVechicleReturnalInfoStrategy, CreateVechicleReturnalInfoStrategy>();
+            services.AddScoped<IGetVechicleReturnalInfoStrategy, GetVechicleReturnalInfoStrategy>();
 
             // Register Validators
             services.AddTransient<IValidator<OrderForCreationDto>, OrderCreationValidator>();

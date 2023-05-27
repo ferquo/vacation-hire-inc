@@ -21,6 +21,7 @@ namespace VacationHireInc.DataAccess.Repositories
         {
             return await db.Orders
                 .Include(order => order.RentedProduct)
+                .Include(order => order.ProductReturnalInfo)
                 .SingleOrDefaultAsync(order => order.Id == id);
         }
 
@@ -29,6 +30,7 @@ namespace VacationHireInc.DataAccess.Repositories
             return await db.Orders
                 .AsNoTracking()
                 .Include(order => order.RentedProduct)
+                .Include(order => order.ProductReturnalInfo)
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();

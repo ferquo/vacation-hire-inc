@@ -15,6 +15,8 @@ namespace VacationHireInc.API
             CreateMap<RentableProduct, IRentableProductDto>().As<RentableProductDto>();
             CreateMap<RentableProduct, RentableProductDto>();
 
+            CreateMap<ProductReturnalInfo, ProductReturnalInfoDto>()
+                .Include<VechicleReturnalInfo, VechicleReturnalInfoDto>();
             CreateMap<VechicleReturnalInfo, VechicleReturnalInfoDto>();
             CreateMap<VechicleReturnalInfoCreationDto, VechicleReturnalInfo>();
         }
