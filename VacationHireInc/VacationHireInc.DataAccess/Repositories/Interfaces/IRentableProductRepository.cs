@@ -6,6 +6,7 @@ namespace VacationHireInc.DataAccess.Repositories.Interfaces
 {
 	public interface IRentableProductRepository : IGenericRepository<RentableProduct>
     {
-	}
+        Task<bool> Exists(Guid id);
+    }
 }
 

@@ -9,9 +9,7 @@ namespace VacationHireInc.Domain.DataTransferObjects
 
         public DateTime ReservedUntil { get; set; }
 
-        public decimal PaidAmount { get; set; }
-
-        public string PaidInCurrency { get; set; }
+        public string CustomerPhoneNumber { get; set; }
 
         public Guid RentedProductId { get; set; }
 

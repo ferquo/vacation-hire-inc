@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.5.2" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Orders\" />
@@ -23,6 +24,8 @@
     <None Remove="VechicleReturnalInfos\" />
     <None Remove="VechicleReturnalInfos\Interfaces\" />
     <None Remove="VechicleReturnalInfos\Validators\" />
+    <None Remove="Currencies\" />
+    <None Remove="Currencies\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
@@ -36,5 +39,7 @@
     <Folder Include="VechicleReturnalInfos\" />
     <Folder Include="VechicleReturnalInfos\Interfaces\" />
     <Folder Include="VechicleReturnalInfos\Validators\" />
+    <Folder Include="Currencies\" />
+    <Folder Include="Currencies\Interfaces\" />
   </ItemGroup>
 </Project>

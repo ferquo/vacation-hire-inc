@@ -2,6 +2,8 @@
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using VacationHireInc.Domain.DataTransferObjects;
+using VacationHireInc.Service.Currencies;
+using VacationHireInc.Service.Currencies.Interfaces;
 using VacationHireInc.Service.Orders;
 using VacationHireInc.Service.Orders.Interfaces;
 using VacationHireInc.Service.Orders.Validators;
@@ -34,6 +36,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddScoped<ICreateVechicleReturnalInfoStrategy, CreateVechicleReturnalInfoStrategy>();
             services.AddScoped<IGetVechicleReturnalInfoStrategy, GetVechicleReturnalInfoStrategy>();
+
+            services.AddScoped<IGetAllCurrenciesStrategy, GetAllCurrenciesStrategy>();
 
             // Register Validators
             services.AddTransient<IValidator<OrderForCreationDto>, OrderCreationValidator>();
