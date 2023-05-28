@@ -1,0 +1,29 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Customer Name Column -->
+    <ng-container matColumnDef="customerName">
+        <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+    </ng-container>
+
+    <!-- Reserved From Column -->
+    <ng-container matColumnDef="reservedFrom">
+        <th mat-header-cell *matHeaderCellDef> Reserved from </th>
+        <td mat-cell *matCellDef="let element"> {{element.reservedFrom}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="reservedUntil">
+        <th mat-header-cell *matHeaderCellDef> Reserved until </th>
+        <td mat-cell *matCellDef="let element"> {{element.reservedUntil}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="customerPhoneNumber">
+        <th mat-header-cell *matHeaderCellDef> Phone number </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerPhoneNumber}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

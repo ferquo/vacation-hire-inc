@@ -8,6 +8,7 @@ using VacationHireInc.API.Middlewares;
 using VacationHireInc.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
+var originsPolicyName = "MY_CORS_POLICY_NAME";
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -36,6 +37,19 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Vacation Hire Inc. API", Version = "v1" });
 });
 
+// Allow any origin for CORS
+// (wouldn't do this in production, but this is just a demo😎)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(originsPolicyName,
+    builder =>
+    {
+        builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
@@ -62,6 +76,8 @@ app.UseSwaggerUI(options =>
     options.SwaggerEndpoint("swagger/v1/swagger.json", "Vacation Hire Inc. API V1");
     options.RoutePrefix = string.Empty;
 });
+
+app.UseCors(originsPolicyName);
 
 // Use the custom global exception handler middleware
 app.UseCustomExceptionHandler();
