@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
@@ -22,21 +22,24 @@ export class OrderService {
     }),
   };
 
-  // HttpClient API get() method => Fetch employees list
-  getOrders(): Observable<PaginatedResult<Order>> {
+  getOrders(pageNumber: number = 1, pageSize: number = 5): Observable<PaginatedResult<Order>> {
+    let params = new HttpParams();
+    params = params.append('pageNumber', pageNumber);
+    params = params.append('pageSize', pageSize);
+
     return this.http
-      .get<PaginatedResult<Order>>(this.apiURL + '/orders')
+      .get<PaginatedResult<Order>>(
+        this.apiURL + '/orders', { params }
+      )
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  // HttpClient API get() method => Fetch employee
   getOrder(id: any): Observable<Order> {
     return this.http
       .get<Order>(this.apiURL + '/orders/' + id)
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  // HttpClient API post() method => Create employee
   createOrder(employee: any): Observable<Order> {
     return this.http
       .post<Order>(
@@ -46,7 +49,7 @@ export class OrderService {
       )
       .pipe(retry(1), catchError(this.handleError));
   }
-  // HttpClient API put() method => Update employee
+  
   updateOrder(id: any, employee: any): Observable<Order> {
     return this.http
       .put<Order>(
@@ -57,7 +60,6 @@ export class OrderService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  // HttpClient API delete() method => Delete employee
   deleteEmployee(id: any) {
     return this.http
       .delete<Order>(this.apiURL + '/orders/' + id, this.httpOptions)
