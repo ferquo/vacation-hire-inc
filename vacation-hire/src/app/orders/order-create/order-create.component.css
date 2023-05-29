@@ -1,0 +1,10 @@
+.full-width {
+    width: 100%;
+}
+
+.formContainer {
+    max-width: 540px;
+    display: flex;
+    flex-flow: row wrap;
+    padding-top: 20px;
+}

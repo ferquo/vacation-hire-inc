@@ -1,1 +1,75 @@
-<p>order-create works!</p>
+
+<form [formGroup]="createOrderForm" (submit)="submit()">
+    <mat-card class="mat-elevation-z8">
+        <mat-card-header>
+            <mat-card-title>Order Information</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="formContainer">
+                <!-- Customer Name -->
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label> Customers Fullname </mat-label>
+                    <input matInput formControlName="customerName" required>
+                    <mat-error *ngIf="createOrderForm.controls['customerName'].touched && createOrderForm.controls['customerName'].invalid">
+                        <span *ngIf="createOrderForm.controls['customerName'].errors!['required']">This field is mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+    
+                <!-- Customer Phone Number -->
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label> Customer phone number</mat-label>
+                    <input matInput formControlName="customerPhoneNumber" required>
+                    <mat-error
+                        *ngIf="createOrderForm.controls['customerPhoneNumber'].touched && createOrderForm.controls['customerPhoneNumber'].invalid">
+                        <span *ngIf="createOrderForm.controls['customerPhoneNumber'].errors!['required']">This field is mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Reservation date range -->
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Enter the date range of the reservation</mat-label>
+                    <mat-date-range-input [rangePicker]="rangePicker">
+                        <input matStartDate formControlName="reservedFrom" placeholder="Start date">
+                        <input matEndDate formControlName="reservedUntil" placeholder="End date">
+                    </mat-date-range-input>
+                    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #rangePicker>
+                        <mat-date-range-picker-actions>
+                            <button mat-button matDateRangePickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+                        </mat-date-range-picker-actions>
+                    </mat-date-range-picker>
+                    <mat-error
+                        *ngIf="createOrderForm.controls['reservedFrom'].touched && createOrderForm.controls['reservedFrom'].invalid">
+                        <span *ngIf="createOrderForm.controls['reservedFrom'].errors!['required']">This field is
+                            mandatory.</span>
+                    </mat-error>
+                    <mat-error
+                        *ngIf="createOrderForm.controls['reservedUntil'].touched && createOrderForm.controls['reservedUntil'].invalid">
+                        <span *ngIf="createOrderForm.controls['reservedUntil'].errors!['required']">This field is
+                            mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Rented product -->
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Rented product</mat-label>
+                    <mat-select formControlName="rentedProductId" required>
+                        <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="createOrderForm.controls['rentedProductId'].touched && createOrderForm.controls['rentedProductId'].invalid">
+                        <span *ngIf="createOrderForm.controls['rentedProductId'].errors!['required']">This field is
+                            mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </mat-card-actions>
+    </mat-card>
+    
+</form>

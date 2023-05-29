@@ -15,6 +15,13 @@ import { MatTableModule } from '@angular/material/table';
 import { OrderListComponent } from './orders/order-list/order-list.component';
 import { OrderCreateComponent } from './orders/order-create/order-create.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -28,6 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -35,6 +44,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatPaginatorModule,
     MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

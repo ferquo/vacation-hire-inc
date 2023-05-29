@@ -24,7 +24,7 @@ export class OrderService {
 
   getOrders(pageNumber: number = 1, pageSize: number = 5): Observable<PaginatedResult<Order>> {
     let params = new HttpParams();
-    params = params.append('pageNumber', pageNumber);
+    params = params.append('page', pageNumber);
     params = params.append('pageSize', pageSize);
 
     return this.http
@@ -74,7 +74,7 @@ export class OrderService {
       errorMessage = error.error.message;
     } else {
       // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Message: ${error.error.error}`;
     }
     window.alert(errorMessage);
     return throwError(() => {

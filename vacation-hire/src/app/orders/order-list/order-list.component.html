@@ -1,3 +1,9 @@
+<div class="button-container">
+    <button mat-fab color="primary" aria-label="Register new order" routerLink="new">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Customer Name Column -->
     <ng-container matColumnDef="customerName">
@@ -8,13 +14,13 @@
     <!-- Reserved From Column -->
     <ng-container matColumnDef="reservedFrom">
         <th mat-header-cell *matHeaderCellDef> Reserved from </th>
-        <td mat-cell *matCellDef="let element"> {{element.reservedFrom}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.reservedFrom | date:'short'}} </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="reservedUntil">
         <th mat-header-cell *matHeaderCellDef> Reserved until </th>
-        <td mat-cell *matCellDef="let element"> {{element.reservedUntil}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.reservedUntil | date:'short'}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
