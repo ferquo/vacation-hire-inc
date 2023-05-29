@@ -22,18 +22,22 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { DialogModule } from '@angular/cdk/dialog';
+import { OrderDetailsDialogComponent } from './orders/order-details-dialog/order-details-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
     OrderListComponent,
-    OrderCreateComponent
+    OrderCreateComponent,
+    OrderDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    DialogModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

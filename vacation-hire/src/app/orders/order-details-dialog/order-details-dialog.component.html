@@ -1,0 +1,31 @@
+<mat-card class="mat-elevation-z8">
+    <mat-card-header>
+        <mat-card-title>Order details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="container">
+            <mat-card class="mat-elevation-z8">
+                <mat-card-content>
+                    <p><b>Customer Name: </b> {{ data.customerName }}</p>
+                    <p><b>Customer Phonenumber: </b> {{ data.customerPhoneNumber }}</p>
+                    <p><b>Reserved from: </b> {{ data.reservedFrom | date:'mediumDate' }}</p>
+                    <p><b>Reserved until: </b> {{ data.reservedUntil | date:'mediumDate' }}</p>
+                    <p><b>Reserved product: </b> {{ data.rentedProduct.name }}</p>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="mat-elevation-z8">
+                <mat-card-header>
+                    <mat-card-title>Returnal details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content *ngIf="productReturnalInfo">
+                    <p><b>Paid amount: </b> {{ productReturnalInfo.paidAmount | currency:selectedCurrency:true:'3.2-2' }}</p>
+                    <p *ngIf="getFuelPercentage"><b>Fuel percentage: </b> {{ getFuelPercentage }}</p>
+                </mat-card-content>
+                <mat-card-content *ngIf="!productReturnalInfo">
+                    <p><b>This product has not been returned yet</b></p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -14,19 +14,38 @@
     <!-- Reserved From Column -->
     <ng-container matColumnDef="reservedFrom">
         <th mat-header-cell *matHeaderCellDef> Reserved from </th>
-        <td mat-cell *matCellDef="let element"> {{element.reservedFrom | date:'short'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.reservedFrom | date:'mediumDate'}} </td>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- Reserved Until Column  -->
     <ng-container matColumnDef="reservedUntil">
         <th mat-header-cell *matHeaderCellDef> Reserved until </th>
-        <td mat-cell *matCellDef="let element"> {{element.reservedUntil | date:'short'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.reservedUntil | date:'mediumDate'}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Phonenumber Column -->
     <ng-container matColumnDef="customerPhoneNumber">
-        <th mat-header-cell *matHeaderCellDef> Phone number </th>
+        <th mat-header-cell *matHeaderCellDef> Phonenumber </th>
         <td mat-cell *matCellDef="let element"> {{element.customerPhoneNumber}} </td>
+    </ng-container>
+
+    <!-- Product Column -->
+    <ng-container matColumnDef="product">
+        <th mat-header-cell *matHeaderCellDef> Rented Product </th>
+        <td mat-cell *matCellDef="let element"> {{element.rentedProduct.name}} </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" aria-label="View details" (click)="openDialog(element.id)">
+                <mat-icon>info</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" aria-label="Return product">
+                <mat-icon>check_circle</mat-icon>
+            </button>
+        </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
