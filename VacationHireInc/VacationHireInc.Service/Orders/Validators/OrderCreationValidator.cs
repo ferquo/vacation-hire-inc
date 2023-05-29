@@ -18,6 +18,10 @@ namespace VacationHireInc.Service.Orders.Validators
                 .MinimumLength(3).WithMessage("Customer Name length must be at least 3 characters")
                 .MaximumLength(30).WithMessage("Customer Name length must be at most 30 characters");
 
+            RuleFor(order => order.CustomerPhoneNumber)
+                .NotEmpty().WithMessage("Customer Phonenumber not specified")
+                .Matches(@"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$").WithMessage("Customer Phonenumber format is invalid");
+
             RuleFor(order => order.RentedProductId)
                 .MustAsync(ProductExist).WithMessage("The specified product does not exist")
                 .NotEmpty().WithMessage("Rented product not specified");

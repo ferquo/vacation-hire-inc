@@ -32,7 +32,7 @@ export class OrderCreateComponent implements OnInit {
       customerName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       reservedFrom: [null, Validators.required],
       reservedUntil: [null, Validators.required],
-      customerPhoneNumber: [null, Validators.required],
+      customerPhoneNumber: [null, Validators.compose([Validators.required, Validators.pattern(`^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$`)])],
       rentedProductId: [null, Validators.required],
     });
   }
