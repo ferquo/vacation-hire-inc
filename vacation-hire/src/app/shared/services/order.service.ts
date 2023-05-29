@@ -12,7 +12,6 @@ import { PaginatedResult } from '../models/paginated-result.model';
 })
 export class OrderService {
 
-  // Define API
   apiURL = environment.apiUrl + '/api';
   constructor(private http: HttpClient) { }
 
@@ -40,21 +39,21 @@ export class OrderService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  createOrder(employee: any): Observable<Order> {
+  createOrder(order: Order): Observable<Order> {
     return this.http
       .post<Order>(
         this.apiURL + '/orders',
-        JSON.stringify(employee),
+        JSON.stringify(order),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.handleError));
   }
   
-  updateOrder(id: any, employee: any): Observable<Order> {
+  updateOrder(id: any, order: any): Observable<Order> {
     return this.http
       .put<Order>(
         this.apiURL + '/orders/' + id,
-        JSON.stringify(employee),
+        JSON.stringify(order),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.handleError));

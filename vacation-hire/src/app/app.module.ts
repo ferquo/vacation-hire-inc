@@ -24,6 +24,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { DialogModule } from '@angular/cdk/dialog';
 import { OrderDetailsDialogComponent } from './orders/order-details-dialog/order-details-dialog.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { OrderDetailsDialogComponent } from './orders/order-details-dialog/order
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
+    MatChipsModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
@@ -55,6 +58,7 @@ import { OrderDetailsDialogComponent } from './orders/order-details-dialog/order
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -19,8 +19,9 @@
                     <mat-card-title>Returnal details</mat-card-title>
                 </mat-card-header>
                 <mat-card-content *ngIf="productReturnalInfo">
-                    <p><b>Paid amount: </b> {{ productReturnalInfo.paidAmount | currency:selectedCurrency:true:'3.2-2' }}</p>
+                    <p><b>Paid amount: </b> {{ productReturnalInfo.paidAmount | currency:selectedCurrency:true:'.2-2' }}</p>
                     <p *ngIf="getFuelPercentage"><b>Fuel percentage: </b> {{ getFuelPercentage }}</p>
+                    <p *ngIf="getVechicleDamageNotes"><b>Vechicle damage notes: </b> {{ getVechicleDamageNotes }}</p>
                 </mat-card-content>
                 <mat-card-content *ngIf="!productReturnalInfo">
                     <p><b>This product has not been returned yet</b></p>

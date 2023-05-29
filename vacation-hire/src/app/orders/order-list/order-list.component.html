@@ -35,15 +35,32 @@
         <td mat-cell *matCellDef="let element"> {{element.rentedProduct.name}} </td>
     </ng-container>
 
+    <!-- Product Column -->
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-chip *ngIf="!element.productReturnalInfo">Open</mat-chip>
+            <mat-chip color="accent" *ngIf="element.productReturnalInfo">Returned</mat-chip>
+        </td>
+    </ng-container>
+
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="primary" aria-label="View details" (click)="openDialog(element.id)">
-                <mat-icon>info</mat-icon>
+            <button mat-icon-button 
+                color="primary" 
+                aria-label="View details"
+                matTooltip="View details"
+                (click)="openDialog(element.id)">
+                    <mat-icon>info</mat-icon>
             </button>
-            <button mat-icon-button color="accent" aria-label="Return product">
-                <mat-icon>check_circle</mat-icon>
+            <button mat-icon-button 
+                color="accent" 
+                aria-label="Fill the returnal form" 
+                matTooltip="Fill the returnal form"
+                *ngIf="!element.productReturnalInfo">
+                    <mat-icon>check_circle</mat-icon>
             </button>
         </td>
     </ng-container>

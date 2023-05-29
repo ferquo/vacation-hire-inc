@@ -17,6 +17,7 @@ export class OrderListComponent implements OnInit {
     'reservedUntil',
     'customerPhoneNumber',
     'product',
+    'status',
     'actions',
   ];
   dataSource: Array<Order> = [];
