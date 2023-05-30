@@ -22,14 +22,6 @@ builder.Services.AddVacationHireIncServiceDependencies();
 // Add dependencies from the data access layer
 builder.Services.AddVacationHireIncDataAccessDependencies();
 
-// Auto Mapper Configurations
-var mappingConfig = new MapperConfiguration(mc =>
-{
-    mc.AddProfile(new MappingProfile());
-});
-IMapper mapper = mappingConfig.CreateMapper();
-builder.Services.AddSingleton(mapper);
-
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

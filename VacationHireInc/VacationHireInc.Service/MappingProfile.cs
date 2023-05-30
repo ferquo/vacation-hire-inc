@@ -3,11 +3,11 @@ using AutoMapper;
 using VacationHireInc.Domain.DataTransferObjects;
 using VacationHireInc.Domain.Entities;
 
-namespace VacationHireInc.API
+namespace VacationHireInc.Service
 {
-    public class MappingProfile : Profile
+	public class MappingProfile : Profile
     {
-        public MappingProfile()
+		public MappingProfile()
 		{
             CreateMap<Order, OrderDto>();
             CreateMap<OrderForCreationDto, Order>();

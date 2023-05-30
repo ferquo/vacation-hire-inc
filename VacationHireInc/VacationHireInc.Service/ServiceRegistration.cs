@@ -1,7 +1,9 @@
 ﻿using System;
+using AutoMapper;
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using VacationHireInc.Domain.DataTransferObjects;
+using VacationHireInc.Service;
 using VacationHireInc.Service.Currencies;
 using VacationHireInc.Service.Currencies.Interfaces;
 using VacationHireInc.Service.Orders;
@@ -43,6 +45,12 @@ namespace Microsoft.Extensions.DependencyInjection
             // Register Validators
             services.AddTransient<IValidator<OrderForCreationDto>, OrderCreationValidator>();
             services.AddTransient<IValidator<VechicleReturnalInfoCreationDto>, VechicleReturnalInfoCreationValidator>();
+
+            // Register the mapping profile 
+            var config = new MapperConfiguration(c => {
+                c.AddProfile<MappingProfile>();
+            });
+            services.AddSingleton<IMapper>(s => config.CreateMapper());
 
             return services;
         }
