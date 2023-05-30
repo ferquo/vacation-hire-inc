@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProductReturnalInfo, VechicleReturnalInfo } from '../models/product-returnal-info.model';
 import { Observable } from 'rxjs/internal/Observable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError, retry, throwError } from 'rxjs';
 import { IProductReturnalInfoService } from './product-returnal-info-factory.service';
@@ -13,6 +13,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class VechicleReturnalInfoService implements IProductReturnalInfoService {
 
   apiURL = environment.apiUrl + '/api';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
+
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
@@ -27,8 +33,9 @@ export class VechicleReturnalInfoService implements IProductReturnalInfoService 
   create(returnalInfo: VechicleReturnalInfo): Observable<VechicleReturnalInfo> {
     return this.http
       .post<VechicleReturnalInfo>(
-        this.apiURL + '/orders',
-        JSON.stringify(returnalInfo)
+        this.apiURL + '/orders/product-returnals/vechicle-returnals/',
+        JSON.stringify(returnalInfo),
+        this.httpOptions
       )
       .pipe(retry(1), catchError(this.handleError));
   }
@@ -37,8 +44,8 @@ export class VechicleReturnalInfoService implements IProductReturnalInfoService 
     return this.formBuilder.group({
       paidAmount: [null, [Validators.required, Validators.min(0)]],
       paidInCurrency: [null, Validators.required],
-      fuelPercentage: [null, Validators.required, Validators.min(0), Validators.max(1)],
-      vechicleDamageNotes: [null, Validators.required],
+      fuelPercentage: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(1)])],
+      vechicleDamageNotes: [null],
     });
   }
 

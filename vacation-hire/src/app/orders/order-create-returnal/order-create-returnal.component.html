@@ -8,7 +8,7 @@
                 <!-- Paid amount -->
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label> Paid amount </mat-label>
-                    <input type='number' matInput formControlName="paidAmount" required>
+                    <input type='number' matInput formControlName="paidAmount" required />
                     <mat-error
                         *ngIf="createProductReturnalForm.controls['paidAmount'].touched && createProductReturnalForm.controls['paidAmount'].invalid">
                         <span *ngIf="createProductReturnalForm.controls['paidAmount'].errors!['required']">This field is
@@ -25,6 +25,28 @@
                     <mat-error
                         *ngIf="createProductReturnalForm.controls['paidInCurrency'].touched && createProductReturnalForm.controls['paidInCurrency'].invalid">
                         <span *ngIf="createProductReturnalForm.controls['paidInCurrency'].errors!['required']">This field is
+                            mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Currency used -->
+                <mat-form-field *ngIf="createProductReturnalForm.contains('fuelPercentage')" class="full-width" appearance="outline">
+                    <mat-label>Fuel percentage</mat-label>
+                    <input type='number' matInput formControlName="fuelPercentage" required />
+                    <mat-error
+                        *ngIf="createProductReturnalForm.controls['fuelPercentage'].touched && createProductReturnalForm.controls['fuelPercentage'].invalid">
+                        <span *ngIf="createProductReturnalForm.controls['fuelPercentage'].errors!['required']">This field is
+                            mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Vechicle damage notes -->
+                <mat-form-field *ngIf="createProductReturnalForm.contains('vechicleDamageNotes')" class="full-width" appearance="outline">
+                    <mat-label>Vechicle damage notes</mat-label>
+                    <textarea matInput formControlName="vechicleDamageNotes" rows="3"></textarea>
+                    <mat-error
+                        *ngIf="createProductReturnalForm.controls['vechicleDamageNotes'].touched && createProductReturnalForm.controls['vechicleDamageNotes'].invalid">
+                        <span *ngIf="createProductReturnalForm.controls['vechicleDamageNotes'].errors!['required']">This field is
                             mandatory.</span>
                     </mat-error>
                 </mat-form-field>
