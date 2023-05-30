@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Currency } from 'src/app/shared/models/currency.model';
 import { Order } from 'src/app/shared/models/order.model';
+import { CurrencyService } from 'src/app/shared/services/currency.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { ProductReturnalInfoFactoryService } from 'src/app/shared/services/product-returnal-info-factory.service';
 import { IProductReturnalInfoService } from 'src/app/shared/services/vechicle-returnal-info.service';
@@ -20,10 +22,12 @@ export class OrderCreateReturnalComponent implements OnInit, OnDestroy {
   private orderDetails!: Order;
   
   public createProductReturnalForm!: FormGroup;
+  public currencies!: Array<Currency>;
 
   constructor(
     private productReturnalInfoFactoryService: ProductReturnalInfoFactoryService,
     private orderService: OrderService,
+    private currencyService: CurrencyService,
     private route: ActivatedRoute,
     private router: Router,
   ) { }
@@ -38,11 +42,18 @@ export class OrderCreateReturnalComponent implements OnInit, OnDestroy {
           .createProductReturnalService(this.orderDetails.rentedProduct.productType);
         this.createProductReturnalForm = this.productReturnalInfoService.buildProductReturnalForm();
       });
-    });  
+    });
+    this.initializeCurrenciesArray();
   }
   
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
+  }
+
+  private initializeCurrenciesArray() {
+    this.currencyService.getAllCurrencies().subscribe((currencies) => {
+      this.currencies = currencies;
+    });
   }
 
   submit() {
@@ -51,7 +62,6 @@ export class OrderCreateReturnalComponent implements OnInit, OnDestroy {
     }
 
     const productReturnalInfo = { orderId: this.orderId, ...this.createProductReturnalForm.value };
-
     this.productReturnalInfoService.create(productReturnalInfo).subscribe((_data: {}) => {
       this.router.navigate(['/orders']);
     });

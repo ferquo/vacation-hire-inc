@@ -16,16 +16,18 @@
                     </mat-error>
                 </mat-form-field>
 
-                <!-- Customer Phone Number -->
-                <!-- <mat-form-field class="full-width" appearance="outline">
-                    <mat-label> Customer phone number</mat-label>
-                    <input matInput formControlName="customerPhoneNumber" required>
+                <!-- Currency used -->
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Currency used</mat-label>
+                    <mat-select formControlName="paidInCurrency" required>
+                        <mat-option *ngFor="let currency of currencies" [value]="currency.key">{{ currency.value }}</mat-option>
+                    </mat-select>
                     <mat-error
-                        *ngIf="createProductReturnalForm.controls['customerPhoneNumber'].touched && createProductReturnalForm.controls['customerPhoneNumber'].invalid">
-                        <span *ngIf="createProductReturnalForm.controls['customerPhoneNumber'].errors!['required']">This field is
+                        *ngIf="createProductReturnalForm.controls['paidInCurrency'].touched && createProductReturnalForm.controls['paidInCurrency'].invalid">
+                        <span *ngIf="createProductReturnalForm.controls['paidInCurrency'].errors!['required']">This field is
                             mandatory.</span>
                     </mat-error>
-                </mat-form-field> -->
+                </mat-form-field>
 
             </div>
         </mat-card-content>
