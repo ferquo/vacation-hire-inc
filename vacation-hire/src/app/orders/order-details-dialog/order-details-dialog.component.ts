@@ -1,10 +1,10 @@
 import { DIALOG_DATA } from '@angular/cdk/dialog';
-import { Component, Inject, OnInit, inject } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Order } from 'src/app/shared/models/order.model';
 import { VechicleReturnalInfo } from 'src/app/shared/models/product-returnal-info.model';
 import { ProductReturnalInfo } from 'src/app/shared/models/product-returnal-info.model';
-import { IProductReturnalInfoService, VechicleReturnalInfoService } from 'src/app/shared/services/vechicle-returnal-info.service';
+import { ProductReturnalInfoFactoryService } from 'src/app/shared/services/product-returnal-info-factory.service';
+import { IProductReturnalInfoService } from 'src/app/shared/services/vechicle-returnal-info.service';
 
 @Component({
   selector: 'app-order-details-dialog',
@@ -17,21 +17,15 @@ export class OrderDetailsDialogComponent implements OnInit {
   public productReturnalInfo?: ProductReturnalInfo;
   private productReturnalInfoService!: IProductReturnalInfoService;
   
-  constructor(@Inject(DIALOG_DATA) public data: Order) {
-    this.buildProductReturnalInfoService();
+  constructor(
+    @Inject(DIALOG_DATA) public data: Order,
+    private productReturnalInfoFactoryService: ProductReturnalInfoFactoryService) {
+    this.productReturnalInfoService = this.productReturnalInfoFactoryService.createProductReturnalService(this.data.rentedProduct.productType);
   }
   
   ngOnInit(): void {
     this.selectedCurrency = this.data.productReturnalInfo?.paidInCurrency;
     this.getProductReturnalInfo();
-  }
-  
-  buildProductReturnalInfoService() {
-    if (this.data.rentedProduct.productType === 'vechicle') {
-      this.productReturnalInfoService = inject(VechicleReturnalInfoService);
-      this.productReturnalInfo = this.data.productReturnalInfo as VechicleReturnalInfo;
-    }
-    this.productReturnalInfo = this.data.productReturnalInfo;
   }
   
   getProductReturnalInfo() {

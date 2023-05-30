@@ -4,6 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Order } from 'src/app/shared/models/order.model';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { OrderDetailsDialogComponent } from '../order-details-dialog/order-details-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-list',
@@ -29,7 +30,8 @@ export class OrderListComponent implements OnInit {
   
   constructor(
     private orderService: OrderService,
-    private dialog: Dialog
+    private dialog: Dialog,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -57,5 +59,9 @@ export class OrderListComponent implements OnInit {
       minWidth: '540px',
       data: this.dataSource.find(order => order.id === orderId),
     });
+  }
+
+  completeProductReturnal(orderId: string) {
+    this.router.navigate(['/orders', orderId, 'return-product']);
   }
 }

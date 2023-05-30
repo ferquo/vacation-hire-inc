@@ -4,11 +4,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError, retry, throwError } from 'rxjs';
-
-export interface IProductReturnalInfoService {
-  get(id: string): Observable<ProductReturnalInfo>;
-  create(returnalInfo: ProductReturnalInfo): Observable<ProductReturnalInfo>;
-}
+import { IProductReturnalInfoService } from './product-returnal-info-factory.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +13,10 @@ export interface IProductReturnalInfoService {
 export class VechicleReturnalInfoService implements IProductReturnalInfoService {
 
   apiURL = environment.apiUrl + '/api';
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private formBuilder: FormBuilder,
+  ) { }
   
   get(id: string): Observable<VechicleReturnalInfo> {
     return this.http
@@ -31,6 +31,16 @@ export class VechicleReturnalInfoService implements IProductReturnalInfoService 
         JSON.stringify(returnalInfo)
       )
       .pipe(retry(1), catchError(this.handleError));
+  }
+
+  buildProductReturnalForm() {
+    return this.formBuilder.group({
+      customerName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      reservedFrom: [null, Validators.required],
+      reservedUntil: [null, Validators.required],
+      customerPhoneNumber: [null, Validators.compose([Validators.required, Validators.pattern(`^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$`)])],
+      rentedProductId: [null, Validators.required],
+    });
   }
 
   // Error handling
@@ -49,3 +59,5 @@ export class VechicleReturnalInfoService implements IProductReturnalInfoService 
     });
   }
 }
+export { IProductReturnalInfoService };
+

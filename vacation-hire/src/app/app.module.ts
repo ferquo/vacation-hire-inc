@@ -26,6 +26,7 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { OrderDetailsDialogComponent } from './orders/order-details-dialog/order-details-dialog.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { OrderCreateReturnalComponent } from './orders/order-create-returnal/order-create-returnal.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MainNavComponent,
     OrderListComponent,
     OrderCreateComponent,
-    OrderDetailsDialogComponent
+    OrderDetailsDialogComponent,
+    OrderCreateReturnalComponent
   ],
   imports: [
     BrowserModule,

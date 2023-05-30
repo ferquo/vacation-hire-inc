@@ -59,6 +59,7 @@
                 color="accent" 
                 aria-label="Fill the returnal form" 
                 matTooltip="Fill the returnal form"
+                (click)="completeProductReturnal(element.id)"
                 *ngIf="!element.productReturnalInfo">
                     <mat-icon>check_circle</mat-icon>
             </button>
