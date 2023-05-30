@@ -15,11 +15,12 @@ import { IProductReturnalInfoService } from 'src/app/shared/services/vechicle-re
 export class OrderCreateReturnalComponent implements OnInit, OnDestroy {
 
   private productReturnalInfoService!: IProductReturnalInfoService;
-  createProductReturnalForm!: FormGroup;
   private routeSubscription!: Subscription;
   private orderId!: string;
   private orderDetails!: Order;
   
+  public createProductReturnalForm!: FormGroup;
+
   constructor(
     private productReturnalInfoFactoryService: ProductReturnalInfoFactoryService,
     private orderService: OrderService,
@@ -35,11 +36,24 @@ export class OrderCreateReturnalComponent implements OnInit, OnDestroy {
         this.orderDetails = order;
         this.productReturnalInfoService = this.productReturnalInfoFactoryService
           .createProductReturnalService(this.orderDetails.rentedProduct.productType);
+        this.createProductReturnalForm = this.productReturnalInfoService.buildProductReturnalForm();
       });
     });  
   }
   
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
+  }
+
+  submit() {
+    if (!this.createProductReturnalForm.valid) {
+      return;
+    }
+
+    const productReturnalInfo = { orderId: this.orderId, ...this.createProductReturnalForm.value };
+
+    this.productReturnalInfoService.create(productReturnalInfo).subscribe((_data: {}) => {
+      this.router.navigate(['/orders']);
+    });
   }
 }

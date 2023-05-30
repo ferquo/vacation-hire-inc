@@ -1,1 +1,37 @@
-<p>order-create-returnal works!</p>
+<form  *ngIf="createProductReturnalForm"  [formGroup]="createProductReturnalForm" (submit)="submit()">
+    <mat-card class="mat-elevation-z8">
+        <mat-card-header>
+            <mat-card-title>Return the product</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="formContainer">
+                <!-- Paid amount -->
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label> Paid amount </mat-label>
+                    <input type='number' matInput formControlName="paidAmount" required>
+                    <mat-error
+                        *ngIf="createProductReturnalForm.controls['paidAmount'].touched && createProductReturnalForm.controls['paidAmount'].invalid">
+                        <span *ngIf="createProductReturnalForm.controls['paidAmount'].errors!['required']">This field is
+                            mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Customer Phone Number -->
+                <!-- <mat-form-field class="full-width" appearance="outline">
+                    <mat-label> Customer phone number</mat-label>
+                    <input matInput formControlName="customerPhoneNumber" required>
+                    <mat-error
+                        *ngIf="createProductReturnalForm.controls['customerPhoneNumber'].touched && createProductReturnalForm.controls['customerPhoneNumber'].invalid">
+                        <span *ngIf="createProductReturnalForm.controls['customerPhoneNumber'].errors!['required']">This field is
+                            mandatory.</span>
+                    </mat-error>
+                </mat-form-field> -->
+
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </mat-card-actions>
+    </mat-card>
+
+</form>

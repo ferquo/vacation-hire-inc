@@ -3,11 +3,12 @@ import { Observable } from 'rxjs/internal/Observable';
 import { ProductReturnalInfo } from '../models/product-returnal-info.model';
 import { HttpClient } from '@angular/common/http';
 import { VechicleReturnalInfoService } from './vechicle-returnal-info.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 export interface IProductReturnalInfoService {
   get(id: string): Observable<ProductReturnalInfo>;
   create(returnalInfo: ProductReturnalInfo): Observable<ProductReturnalInfo>;
+  buildProductReturnalForm(): FormGroup;
 }
 
 @Injectable({

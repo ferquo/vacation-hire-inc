@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError, retry, throwError } from 'rxjs';
 import { IProductReturnalInfoService } from './product-returnal-info-factory.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -33,13 +33,12 @@ export class VechicleReturnalInfoService implements IProductReturnalInfoService 
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  buildProductReturnalForm() {
+  buildProductReturnalForm(): FormGroup {
     return this.formBuilder.group({
-      customerName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      reservedFrom: [null, Validators.required],
-      reservedUntil: [null, Validators.required],
-      customerPhoneNumber: [null, Validators.compose([Validators.required, Validators.pattern(`^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$`)])],
-      rentedProductId: [null, Validators.required],
+      paidAmount: [null, [Validators.required, Validators.min(0)]],
+      paidInCurrency: [null, Validators.required],
+      fuelPercentage: [null, Validators.required, Validators.min(0), Validators.max(1)],
+      vechicleDamageNotes: [null, Validators.required],
     });
   }
 
