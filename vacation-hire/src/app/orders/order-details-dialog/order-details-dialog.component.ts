@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Order } from 'src/app/shared/models/order.model';
 import { VechicleReturnalInfo } from 'src/app/shared/models/product-returnal-info.model';
 import { ProductReturnalInfo } from 'src/app/shared/models/product-returnal-info.model';
+import { CurrencyService } from 'src/app/shared/services/currency.service';
 import { ProductReturnalInfoFactoryService } from 'src/app/shared/services/product-returnal-info-factory.service';
 import { IProductReturnalInfoService } from 'src/app/shared/services/vechicle-returnal-info.service';
 
@@ -13,13 +14,16 @@ import { IProductReturnalInfoService } from 'src/app/shared/services/vechicle-re
 })
 export class OrderDetailsDialogComponent implements OnInit {
   
+  private productReturnalInfoService!: IProductReturnalInfoService;
+
   public selectedCurrency: string = '';
   public productReturnalInfo?: ProductReturnalInfo;
-  private productReturnalInfoService!: IProductReturnalInfoService;
+  public paidValueInUSD: number = 0;
   
   constructor(
     @Inject(DIALOG_DATA) public data: Order,
-    private productReturnalInfoFactoryService: ProductReturnalInfoFactoryService) {
+    private productReturnalInfoFactoryService: ProductReturnalInfoFactoryService,
+    private currencyService: CurrencyService) {
     this.productReturnalInfoService = this.productReturnalInfoFactoryService.createProductReturnalService(this.data.rentedProduct.productType);
   }
   
@@ -32,8 +36,22 @@ export class OrderDetailsDialogComponent implements OnInit {
     if (this.data.productReturnalInfo?.id) {
       this.productReturnalInfoService.get(this.data.productReturnalInfo?.id).subscribe((data) => {
         this.productReturnalInfo = data;
+        this.calculatePaidAmountInUSD();
       });
     }
+  }
+
+  calculatePaidAmountInUSD() {
+    const paidAmount = this.data?.productReturnalInfo?.paidAmount ?? 0;
+    const usedCurrency = this.data?.productReturnalInfo?.paidInCurrency ?? 'USD';
+    if (usedCurrency !== 'USD') {
+      this.currencyService.getCurrencyExchangeRateToUSD(usedCurrency).subscribe(exchangeRate => {
+        this.paidValueInUSD = paidAmount * (1 / exchangeRate.rate);
+      });
+    } else {
+      this.paidValueInUSD = paidAmount;
+    }
+
   }
 
   get getFuelPercentage(): number | undefined {

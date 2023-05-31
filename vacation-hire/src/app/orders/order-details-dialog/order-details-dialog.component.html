@@ -20,6 +20,7 @@
                 </mat-card-header>
                 <mat-card-content *ngIf="productReturnalInfo">
                     <p><b>Paid amount: </b> {{ productReturnalInfo.paidAmount | currency:selectedCurrency:true:'.2-2' }}</p>
+                    <p *ngIf="paidValueInUSD"><b>Paid amount in USD: </b> {{ paidValueInUSD | currency:'USD':true:'.2-2' }}</p>
                     <p *ngIf="getFuelPercentage"><b>Fuel percentage: </b> {{ getFuelPercentage }}</p>
                     <p *ngIf="getVechicleDamageNotes"><b>Vechicle damage notes: </b> {{ getVechicleDamageNotes }}</p>
                 </mat-card-content>

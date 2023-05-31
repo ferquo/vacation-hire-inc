@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Currency } from '../models/currency.model';
 import { catchError, retry, take } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { CurrencyExchangeRate } from '../models/currency-exchange-rate.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,12 @@ export class CurrencyService {
   getAllCurrencies(): Observable<Array<Currency>> {
     return this.http
       .get<Array<Currency>>(this.apiURL + '/currencies')
+      .pipe(take(1), retry(1), catchError(this.handleError));
+  }
+
+  getCurrencyExchangeRateToUSD(currency: string) {
+    return this.http
+      .get<CurrencyExchangeRate>(`${this.apiURL}/currencies/${currency}`)
       .pipe(take(1), retry(1), catchError(this.handleError));
   }
 
