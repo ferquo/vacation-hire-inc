@@ -6,6 +6,8 @@ This application consists of a backend, built on .Net Core 7, and a front-end bu
 ### The back-end
 For the backend I've created a solution, using .Net Core 7, based on the onion architecture. I've used Entity Framework Core 7 for accessing the data from a an MSSQL database, that is hosted in Azure. I've used FluentValidation, for validating models, Automapper for mapping between models, and xUnit with FluentAssertions for writing unit tests.
 
+If you want to run the back-end, with the database that is already configured, you ahve to reach out to me, to whitelist your IP address
+
 The solution is based on the onion architecture, and it consists of the following layers:
 
 - **The presentaion layer**: VacationHireInc.API
